@@ -3,7 +3,7 @@ import "./App.css";
 import Posts from "./components/Posts";
 import Photos from "./components/Photos";
 import Error from "./components/Error";
-import history from "./history/history";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import SharedLayout from "./components/SharedLayout";
@@ -36,6 +36,10 @@ function App() {
 
               <Route path="posts/:postId" element={<SinglePost />}></Route>
               <Route path="photos" element={<Photos />}></Route>
+              {/* <Route
+                path="logout"
+                element={<Logout setUser={setUser} />}
+              ></Route> */}
               <Route path="*" element={<Error />}></Route>
             </Route>
           </Routes>

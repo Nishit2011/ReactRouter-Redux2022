@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
@@ -23,6 +23,10 @@ const Login = ({ setUser }) => {
     setUser(loginDetails);
     navigate("/");
   };
+
+  //   useEffect(() => {
+  //     setLoginDetails({ ...loginDetails, uname: "", pswd: "" });
+  //   }, []);
 
   return (
     <div>

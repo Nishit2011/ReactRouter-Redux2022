@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
+import postsReducer from "./postsReducer";
+// import { photosReducer } from "./photosReducer";
 
 const rootReducer = combineReducers({
-  // posts: postReducer,
-  // photos: photosReducer
+  posts: postsReducer,
+  //   photos: photosReducer,
 });
 
 export default rootReducer;
