@@ -21,6 +21,27 @@ const getPostsError = (err) => {
   };
 };
 
+const getPostByIdRequest = () => {
+  return {
+    type: "POSTS_BY_ID",
+  };
+};
+
+const getPostByIdSuccess = (posts) => {
+  //console.log(posts);
+  return {
+    type: "POSTS_BY_ID_SUCCESS",
+    payload: posts,
+  };
+};
+
+const getPostByIdError = (err) => {
+  return {
+    type: "POSTS_BY_ID_ERROR",
+    payload: err,
+  };
+};
+
 export const getPosts = () => async (dispatch) => {
   console.log("getPosts");
   dispatch(getPostsRequest);
@@ -34,5 +55,21 @@ export const getPosts = () => async (dispatch) => {
     .catch((error) => {
       const err = error.message;
       dispatch(getPostsError(err));
+    });
+};
+
+export const getPostById = (postId) => async (dispatch) => {
+  console.log("getPostById");
+  dispatch(getPostByIdRequest);
+  await axios
+    .get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+    .then((res) => {
+      const posts = res.data;
+
+      dispatch(getPostByIdSuccess(posts));
+    })
+    .catch((error) => {
+      const err = error.message;
+      dispatch(getPostByIdError(err));
     });
 };

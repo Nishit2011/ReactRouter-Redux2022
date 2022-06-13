@@ -4,13 +4,14 @@ import Search from "./Search";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../action";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const { postId, setPostId } = useState(0);
 
   const navigate = useNavigate();
 
-  const posts = useSelector((state) => state.posts.postsData);
+  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   const userVal = useContext(UserContext);
@@ -33,11 +34,11 @@ const Posts = () => {
         name="post"
       />
       {console.log(posts)}
-      {posts && posts.length > 0 ? (
-        posts.map((el) => (
+      {!posts.loading ? (
+        posts.postsData.map((el) => (
           <div key={el.id}>
             <b>{el.id}.</b>
-            {el.title}
+            <Link to={`/posts/${el.id}/`}> {el.title}</Link>
           </div>
         ))
       ) : (
